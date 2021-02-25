@@ -15,6 +15,8 @@ export default function Home() {
                 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
                 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
                 <link rel="manifest" href="/site.webmanifest"/>
+                <link rel="preconnect" href="https://fonts.gstatic.com"/>
+                <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet"/>
                 <meta name="description" content="Étudiant en Informatique Théorique à l'université de Montpellier"/>
                 <meta property="og:type" content="website"/>
                 <meta name="og:title" property="og:title" content="Areski Guilhem Himeur - Curriculum vitæ"/>
