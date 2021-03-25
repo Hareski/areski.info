@@ -1,25 +1,40 @@
 import Head from 'next/head'
 import React from "react";
 import Header from "../components/Header/Header";
+import MainAlert from "../components/MainAlert/MainAlert";
 import Card from "../components/Card/Card";
 import Footer from "../components/Footer/Footer";
 import styles from "./Home.module.css";
+import { request } from "../lib/datocms";
 
-export default function Home() {
+const MAINALERT_QUERY = `query MyQuery { mainAlert { message }}`;
+
+export async function getStaticProps() {
+    try {
+        const alertProps = await request({ query: MAINALERT_QUERY });
+        const alertMessage = alertProps.mainAlert.message
+        return { props: { alertMessage } };
+    } catch (error) {
+        const alertMessage = "Error while catching alert message."
+        return { props: { alertMessage } };
+    }
+}
+
+export default function Home({ alertMessage }) {
     return (
         <div className={styles.container}>
             <Head>
                 <title>Areski Guilhem Himeur - Curriculum vitæ</title>
-                <meta name="viewport" content="initial-scale=1.0, width=device-width"/>
-                <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
-                <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
-                <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
-                <link rel="manifest" href="/site.webmanifest"/>
-                <link rel="preconnect" href="https://fonts.gstatic.com"/>
-                <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet"/>
-                <meta name="description" content="Étudiant en Informatique Théorique à l'université de Montpellier"/>
-                <meta property="og:type" content="website"/>
-                <meta name="og:title" property="og:title" content="Areski Guilhem Himeur - Curriculum vitæ"/>
+                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+                <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+                <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+                <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+                <link rel="manifest" href="/site.webmanifest" />
+                <link rel="preconnect" href="https://fonts.gstatic.com" />
+                <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet" />
+                <meta name="description" content="Étudiant en Informatique Théorique à l'université de Montpellier" />
+                <meta property="og:type" content="website" />
+                <meta name="og:title" property="og:title" content="Areski Guilhem Himeur - Curriculum vitæ" />
                 <meta name="og:description" property="og:description"
                       content="Doctorant en Informatique Théorique à l'université de Montpellier"/>
             </Head>
@@ -32,7 +47,7 @@ export default function Home() {
                     "intelligence artificielle, optimisation, théorie des graphes, calculabilité, complexité, " +
                     "algorithmique probabiliste, etc."}
                 />
-
+                <MainAlert message={alertMessage}></MainAlert>
                 <div className={styles.grid}>
                     <Card
                         title={"Curriculum vitæ"}
