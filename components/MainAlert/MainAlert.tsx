@@ -2,12 +2,12 @@ import React from "react";
 import styles from './MainAlert.module.css'
 import ReactMarkdown from "react-markdown";
 
-type PropsMainAlert = { message: string }
+type PropsMainAlert = { message: string, boxColor: string }
 
-export const MainAlert = ({ message }: PropsMainAlert) => (
-    <div className={styles.alertBoxMessage}>
+export const MainAlert = ({ message, boxColor }: PropsMainAlert) => (
+    <div className={styles.alertBoxMessage} style={{ backgroundColor: boxColor }}>
         <p className={styles.alertTextMessage}>
-            <ReactMarkdown escapeHtml={true} source={message}/>
+            <ReactMarkdown escapeHtml={true} source={message} />
         </p>
     </div>
 );

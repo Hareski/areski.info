@@ -5,7 +5,7 @@ type FooterLink = { title: string, link: string };
 type PropsFooter = { links: FooterLink[] };
 
 export const renderLink = ({title, link}: FooterLink) => (
-    <a href={link}>{title}</a>
+    <a href={link} key={title}>{title}</a>
 );
 
 export const Footer = ({links}: PropsFooter) => (

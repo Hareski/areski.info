@@ -7,20 +7,26 @@ import Footer from "../components/Footer/Footer";
 import styles from "./Home.module.css";
 import { request } from "../lib/datocms";
 
-const MAINALERT_QUERY = `query MyQuery { mainAlert { message }}`;
+const MAINALERT_QUERY = `query MyQuery { mainAlert { message, boxColor { alpha, blue, green, red } }}`;
 
 export async function getStaticProps() {
     try {
         const alertProps = await request({ query: MAINALERT_QUERY });
         const alertMessage = alertProps.mainAlert.message
-        return { props: { alertMessage } };
+        const alertBoxColor = "rgb("
+            + alertProps.mainAlert.boxColor.red + ","
+            + alertProps.mainAlert.boxColor.green + ","
+            + alertProps.mainAlert.boxColor.blue + ","
+            + "." + alertProps.mainAlert.boxColor.alpha + ")"
+        return { props: { alertMessage, alertBoxColor } };
     } catch (error) {
         const alertMessage = "Error while catching alert message."
-        return { props: { alertMessage } };
+        const alertBoxColor = "#CC006620"
+        return { props: { alertMessage, alertBoxColor } };
     }
 }
 
-export default function Home({ alertMessage }) {
+export default function Home({ alertMessage, alertBoxColor }) {
     return (
         <div className={styles.container}>
             <Head>
@@ -47,7 +53,7 @@ export default function Home({ alertMessage }) {
                     "intelligence artificielle, optimisation, théorie des graphes, calculabilité, complexité, " +
                     "algorithmique probabiliste, etc."}
                 />
-                <MainAlert message={alertMessage}></MainAlert>
+                <MainAlert message={alertMessage} boxColor={alertBoxColor} ></MainAlert>
                 <div className={styles.grid}>
                     <Card
                         title={"Curriculum vitæ"}
