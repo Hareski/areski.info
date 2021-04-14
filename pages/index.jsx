@@ -60,7 +60,6 @@ export default function Home() {
                 links={[
                     {title: "Code source", link: "https://github.com/Hareski/areski.info"},
                     {title: "Mentions Légales", link: "https://github.com/Hareski/areski.info/blob/master/README.md"},
-                    {title: "English version", link: "/en"}
                 ]}
             />
 
