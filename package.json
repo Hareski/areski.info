@@ -10,6 +10,7 @@
   "dependencies": {
     "@types/node": "*",
     "@types/react": "*",
+    "graphql": "^15.6.0",
     "graphql-request": "^3.5.0",
     "marked": "^3.0.4",
     "next": "^10.2.3",
