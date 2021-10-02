@@ -21,16 +21,16 @@ export default function Home() {
                 <meta property="og:type" content="website"/>
                 <meta name="og:title" property="og:title" content="Areski Guilhem Himeur - Curriculum vitæ"/>
                 <meta name="og:description" property="og:description"
-                      content="Étudiant en Informatique Théorique à l'université de Montpellier"/>
+                      content="Doctorant en Informatique Théorique à l'université de Montpellier"/>
             </Head>
             <main>
                 <Header
                     firstName={"Areski Guilhem"}
                     lastName={"HIMEUR"}
-                    subtitle={"Étudiant en Informatique Théorique à l'université de Montpellier"}
-                    description={"Formation d’ingénieurs généralistes et à la recherche académique et opérationnelle ; " +
-                    "calculabilité, caractérisation de la complexité des problèmes, algorithmique probabiliste, " +
-                    "optimisation, théorie des graphes, etc."}
+                    subtitle={"Doctorant en Informatique Théorique à l'université de Montpellier"}
+                    description={"Formation  à la recherche académique et opérationnelle et d’ingénieurs généralistes; " +
+                    "intelligence artificielle, optimisation, théorie des graphes, calculabilité, complexité, " +
+                    "algorithmique probabiliste, etc."}
                 />
 
                 <div className={styles.grid}>
