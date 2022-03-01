@@ -1,11 +1,41 @@
 import Head from 'next/head'
 import React from "react";
 import Header from "../components/Header/Header";
+import MainAlert from "../components/MainAlert/MainAlert";
 import Card from "../components/Card/Card";
 import Footer from "../components/Footer/Footer";
 import styles from "./Home.module.css";
+import {request} from "../lib/datocms";
 
-export default function Home() {
+const MAINALERT_QUERY = `query HomeQuery{allHomeCards{id, link, short, title}, mainAlert{on, message, boxColor {alpha, blue, green, red}}}`;
+
+export async function getStaticProps() {
+    try {
+        const alertProps = await request({query: MAINALERT_QUERY});
+        const alertMessage = alertProps.mainAlert.message
+        const alertOn = alertProps.mainAlert.on
+        const alertBoxColor = "rgb("
+            + alertProps.mainAlert.boxColor.red + ","
+            + alertProps.mainAlert.boxColor.green + ","
+            + alertProps.mainAlert.boxColor.blue + ","
+            + "." + alertProps.mainAlert.boxColor.alpha + ")"
+        const cardList = alertProps.allHomeCards.map(card => {
+            return {
+                id: card.id,
+                link: card.link,
+                short: card.short,
+                title: card.title
+            }
+        })
+        return {props: {alertOn, alertMessage, alertBoxColor, cardList}};
+    } catch (error) {
+        const alertMessage = "Error while catching alert message."
+        const alertBoxColor = "#CC006620"
+        return {props: {alertMessage, alertBoxColor}};
+    }
+}
+
+export default function Home({alertOn, alertMessage, alertBoxColor, cardList}) {
     return (
         <div className={styles.container}>
             <Head>
@@ -32,28 +62,16 @@ export default function Home() {
                     "intelligence artificielle, optimisation, théorie des graphes, calculabilité, complexité, " +
                     "algorithmique probabiliste, etc."}
                 />
-
+                {alertOn && <MainAlert message={alertMessage} boxColor={alertBoxColor}></MainAlert>}
                 <div className={styles.grid}>
-                    <Card
-                        title={"Curriculum vitæ"}
-                        link={"./CV - Areski Guilhem Himeur.pdf"}
-                        description={"Une version PDF de mon Curriculum vitæ"}
-                    />
-                    <Card
-                        title={"Contact"}
-                        link={"mailto:himeur@areski.info"}
-                        description={"Contactez moi sur himeur@areski.info"}
-                    />
-                    <Card
-                        title={"Linkedin"}
-                        link={"https://www.linkedin.com/in/AreskiHimeur/"}
-                        description={"Plus de détails sur mon profil Linkedin"}
-                    />
-                    <Card
-                        title={"Github"}
-                        link={"https://github.com/Hareski"}
-                        description={"Quelques projets sur mon compte Github"}
-                    />
+                    {cardList.map(card => (
+                        <Card
+                            key={card.id}
+                            link={card.link}
+                            description={card.short}
+                            title={card.title}
+                        />
+                    ))}
                 </div>
             </main>
             <Footer
@@ -64,16 +82,19 @@ export default function Home() {
             />
 
             <style jsx global>{`
-        html,
-        body {
-          padding: 0;
-          margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-            sans-serif;
-        }
-        * { box-sizing: border-box; }
-      `}</style>
+              html,
+              body {
+                padding: 0;
+                margin: 0;
+                font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+                Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+                sans-serif;
+              }
+
+              * {
+                box-sizing: border-box;
+              }
+            `}</style>
         </div>
     )
 }

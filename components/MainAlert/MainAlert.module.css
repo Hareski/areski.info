@@ -1,0 +1,9 @@
+.alertBoxMessage {
+    width: 80%;
+    background-color: #ad003f21;
+    border-radius: 10px;
+}
+
+.alertTextMessage {
+    text-align: center;
+}
