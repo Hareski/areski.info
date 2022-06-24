@@ -51,16 +51,14 @@ export default function Home({alertOn, alertMessage, alertBoxColor, cardList}) {
                 <meta property="og:type" content="website"/>
                 <meta name="og:title" property="og:title" content="Areski Guilhem Himeur - Curriculum vitæ"/>
                 <meta name="og:description" property="og:description"
-                      content="Doctorant en Informatique Théorique à l'université de Montpellier"/>
+                      content="PhD student in Artificial Intelligence and Theoretical Computer Science at the University of Montpellier"/>
             </Head>
             <main>
                 <Header
                     firstName={"Areski Guilhem"}
                     lastName={"HIMEUR"}
-                    subtitle={"Doctorant en Informatique Théorique à l'université de Montpellier"}
-                    description={"Formation  à la recherche académique et opérationnelle et d’ingénieurs généralistes; " +
-                    "intelligence artificielle, optimisation, théorie des graphes, calculabilité, complexité, " +
-                    "algorithmique probabiliste, etc."}
+                    subtitle={"PhD student in Artificial Intelligence and Theoretical Computer Science at the University of Montpellier"}
+                    description={"Education in academic and operational research and general engineering; artificial intelligence, optimization, graph theory, computability, complexity, probabilistic algorithmics, etc."}
                 />
                 {alertOn && <MainAlert message={alertMessage} boxColor={alertBoxColor}></MainAlert>}
                 <div className={styles.grid}>
@@ -76,8 +74,8 @@ export default function Home({alertOn, alertMessage, alertBoxColor, cardList}) {
             </main>
             <Footer
                 links={[
-                    {title: "Code source", link: "https://github.com/Hareski/areski.info"},
-                    {title: "Mentions Légales", link: "https://github.com/Hareski/areski.info/blob/master/README.md"},
+                    {title: "Source", link: "https://github.com/Hareski/areski.info"},
+                    {title: "Legal", link: "https://github.com/Hareski/areski.info/blob/master/README.md"},
                 ]}
             />
 
