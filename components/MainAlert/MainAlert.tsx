@@ -1,15 +1,13 @@
 import React from "react";
 import styles from './MainAlert.module.css'
-import marked from 'marked';
+import ReactMarkdown from 'react-markdown'
 
 
 type PropsMainAlert = { message: string, boxColor: string }
 
 export const MainAlert = ({ message, boxColor }: PropsMainAlert) => (
     <div className={styles.alertBoxMessage} style={{ backgroundColor: boxColor }}>
-        <p className={styles.alertTextMessage}>
-            <div dangerouslySetInnerHTML={{ __html: marked(message, {sanitize: true})}} />
-        </p>
+        <ReactMarkdown className={styles.alertTextMessage}>{message}</ReactMarkdown>
     </div>
 );
 
