@@ -6,6 +6,7 @@ import Card from "../components/Card/Card";
 import Footer from "../components/Footer/Footer";
 import styles from "./Home.module.css";
 import {request} from "../lib/datocms";
+import { Analytics } from '@vercel/analytics/react';
 
 const MAINALERT_QUERY = `query HomeQuery{allHomeCards{id, link, short, title}, mainAlert{on, message, boxColor {alpha, blue, green, red}}}`;
 
@@ -72,6 +73,7 @@ export default function Home({alertOn, alertMessage, alertBoxColor, cardList}) {
                     ))}
                 </div>
             </main>
+            <Analytics/>
             <Footer
                 links={[
                     {title: "Source", link: "https://github.com/Hareski/areski.info"},
