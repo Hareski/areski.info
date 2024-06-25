@@ -40,7 +40,7 @@ export default function Home({alertOn, alertMessage, alertBoxColor, cardList}) {
     return (
         <div className={styles.container}>
             <Head>
-                <title>Areski Guilhem Himeur - Curriculum vitæ</title>
+                <title>Areski Himeur - Curriculum vitæ</title>
                 <meta name="viewport" content="initial-scale=1.0, width=device-width"/>
                 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
                 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
@@ -56,7 +56,7 @@ export default function Home({alertOn, alertMessage, alertBoxColor, cardList}) {
             </Head>
             <main>
                 <Header
-                    firstName={"Areski Guilhem"}
+                    firstName={"Areski"}
                     lastName={"HIMEUR"}
                     subtitle={"PhD student in Artificial Intelligence and Theoretical Computer Science at the University of Montpellier"}
                     description={"Education in academic and operational research and general engineering; artificial intelligence, optimization, graph theory, computability, complexity, probabilistic algorithmics, etc."}
